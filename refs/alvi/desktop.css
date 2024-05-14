@@ -1,0 +1,186 @@
+/* Basic CSS Setup */
+:root {
+  --primary-color: #0070c9;
+  --hover-color: #005fa3;
+  --background-color: #f0f0f0;
+  --text-color: #333;
+  --header-bg-color: #717D7E;
+  --nav-bg-color: #333;
+  --button-bg-color: #4CAF50;
+  --button-hover-bg-color: #3e8e41;
+  --footer-bg-color: #333;
+  --shadow-color: rgba(0, 0, 0, 0.15);
+}
+
+@media (max-width: 768px) {
+  body {
+    font-size: 14px;
+  }
+}
+
+/* Global styles */
+body {
+  font-family: Arial, sans-serif;
+  font-size: 16px;
+  line-height: 1.5;
+  margin: 0;
+  padding: 0;
+  color: var(--text-color);
+  background-color: var(--background-color);
+  transition: background-color 0.5s ease;
+}
+
+a {
+  color: var(--primary-color);
+  text-decoration: none;
+  transition: color 0.3s ease-in-out;
+}
+
+h4 {
+  text-align: center;
+  font-size: 36px;
+  margin-top: -5px;
+}
+
+.box {
+  border: 1px solid black;
+  padding: 10px;
+  margin-bottom: 20px;
+  transition: transform 0.3s ease-out, box-shadow 0.3s ease-in-out;
+  box-shadow: 2px 2px 5px var(--shadow-color);
+}
+
+.box:hover {
+  transform: translateY(-5px);
+  box-shadow: 5px 5px 15px var(--shadow-color);
+}
+
+a:hover {
+  color: var(--hover-color);
+  text-shadow: 1px 1px 2px var(--shadow-color);
+}
+
+/* Header styles with complex animation */
+header {
+  background-color: var(--header-bg-color);
+  color: #fff;
+  padding: 20px;
+  text-align: center;
+  animation: fadeIn 2s ease-in;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(-10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+h1 {
+  font-size: 36px;
+  margin: 0;
+}
+
+/* Navigation styles with grid */
+nav {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
+  gap: 10px;
+  background-color: var(--nav-bg-color);
+  padding: 10px;
+}
+
+nav a {
+  color: #fff;
+  text-align: center;
+  padding: 10px;
+  border-radius: 5px;
+  transition: background-color 0.2s, transform 0.2s;
+}
+
+nav a:hover {
+  background-color: #DCD0FF;
+  text-decoration: underline;
+  transform: rotate(-5deg) scale(1.1);
+  animation: none;
+}
+
+/* More sophisticated animation for job section */
+div h5 {
+  background-color: green;
+  display: inline-block;
+  padding: 10px;
+  font-size: 28px;
+  animation: slideRight 0.5s ease-out forwards;
+}
+
+@keyframes slideRight {
+  0% { transform: translateX(-100%); }
+  100% { transform: translateX(0); }
+}
+
+.apply-now-btn {
+  background-color: green;
+  color: white;
+  padding: 10px 20px;
+  border-radius: 5px;
+  transition: background-color 0.3s ease, transform 0.3s ease, filter 0.3s ease;
+}
+
+.apply-now-btn:hover {
+  background-color: darkgreen;
+  transform: scale(1.1);
+  filter: brightness(120%);
+}
+
+/* Main content styles with grid layout */
+main {
+  display: grid;
+  grid-template-columns: 1fr 3fr;
+  gap: 20px;
+  max-width: 960px;
+  margin: 20px auto;
+  padding: 20px;
+  background-color: #fff;
+  box-shadow: 0 0 10px var(--shadow-color);
+}
+
+h2 {
+  font-size: 24px;
+  margin: 0;
+}
+
+p {
+  margin: 0 0 20px;
+}
+
+img {
+  max-width: 100%;
+}
+
+/* Improved button styles with animation */
+input[type="submit"], input[type="reset"] {
+  background-color: var(--button-bg-color);
+  border: none;
+  color: white;
+  padding: 10px 20px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  cursor: pointer;
+  border-radius: 10px;
+  transition: all 0.3s ease-in-out;
+}
+
+input[type="submit"]:hover, input[type="reset"]:hover {
+  background-color: var(--button-hover-bg-color);
+  transform: translateY(-3px);
+  box-shadow: 0 5px 10px var(--shadow-color);
+}
+
+/* Footer styles */
+footer {
+  background-color: var(--footer-bg-color);
+  color: #fff;
+  padding: 10px;
+  text-align: center;
+}

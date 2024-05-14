@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="description" content="Demonstrates some basic HTML content elements and CSS" />
+  <meta name="keywords" content="HTML5, tags" />
+  <meta name="author" content="A Lecturer"  />
+  <!--other meta stuff-->
+ <link href="mobile.css" rel="stylesheet" type="text/css" />
+  <link href="desktop.css" rel="stylesheet" type="text/css" />
+  <script src="script.js" type="text/javascript"></script>
+
+  <title>HTML Structure and Content Elements + CSS</title>
+  
+</head>
+
+<body>
+<article>
+<header><h1> Apply CTS</h1></header>
+<nav>
+<a href="index.html">Home</a>
+<a href="jobs.html">Jobs</a>
+<a href="apply.html">Apply</a>
+<a href="about.html">About</a>
+<a href="enhancements.html">Enhancements</a>
+<a href="contract.html">Contract</a>
+
+</article>
+</nav>
+<section>
+<header>
+<h2>Job application page</h2>
+</header>
+<h4>Application Form</h4>
+<p>Please fill the programme below: </p>
+</section>
+<section>
+
+<p><label>Job reference number</label>
+<input type="text" name="frnumber" maxlength="5"
+size="5"/>
+</p>
+</section>
+<section>
+<p> Personal details</p>
+<p><label>First Name</label>
+<input type="text" name="ffname" maxlength="20"
+size="20"/>
+</p>
+<p><label>Last Name</label>
+<input type="text" name="flname" maxlength="20"
+size="20"/>
+</p>
+<label for="dob">Date of Birth:</label>
+<input type="datetime-local" id="dob" name="dob" value="" required>
+<script>
+  document.getElementById("dob").defaultValue = new Date().toISOString().substr(0, 16);
+</script>
+<p>Gender <br />
+<input type="checkbox" name="cbmale"
+value="Male" />Male
+<input type="checkbox" name="cbFemale"
+value="Female" />Female
+<input type="checkbox" name="cbother"
+value="Other" />Other
+</p>
+
+</section>
+
+
+<section>
+<p>Adress</p>
+<p><label>Street Address</label>
+<input type="text" name="faname" maxlength="40"
+size="40"/>
+</p>
+<p><label>Suburb/</label>
+<input type="text" name="fsname" maxlength="40"
+size="40"/>
+</p>
+<p><label>State:</label>
+<select name="rank">
+<option value="VIC">VIC</option>
+<option value="NSW">NSW</option>
+<option value="QLD">QLD</option>
+<option value="NT">NT</option>
+<option value="WA">WA</option>
+<option value="SA">SA</option>
+<option value="TAS">TAS</option>
+<option value="ACT">ACT</option>
+</select>
+</p>
+<p><label>Postcode</label>
+<input type="text" name="fcode" maxlength="4"
+size="4"/>
+</section>
+
+<section>
+<p>Contract Information</p>
+<p><label>Email Adress</label>
+<input type="text" name="fmail" maxlength="40"
+size="40"/>
+<p><label>Phone Number</label>
+<input type="text" name="fnumber" maxlength="12"
+size="12"/>
+</section>
+
+<section>
+<p>Skills</p>
+
+<input type="checkbox" name="cbcom"
+value="Communication" />Communication
+<input type="checkbox" name="cbwrk"
+value="Hard Working" />Hard Working
+<input type="checkbox" name="cbex"
+value="Experience" />Exprience
+<input type="checkbox" name="cbls"
+value="Driving " />Driving 
+<input type="checkbox" name="cbls"
+value="Computer " />Computer
+<input type="checkbox" name="cbother"
+value="Other" />Other
+<p><label>Other Skills</label><br />
+<textarea name="comments" rows="5" cols="20">
+</textarea>
+</p>
+<p>
+<a href="submit.html" class="apply-now-btn">Submit</a>
+<a href="index.html" class="apply-now-btn">Reset</a>
+
+
+</p>
+
+</section>
+
+
+
+<p>
+<img src="apply_logo.png" alt="Apply Now" width="200" height="200">
+
+
+</p>
+
+
+
+
+</body>
+</html>
