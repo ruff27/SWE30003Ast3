@@ -1,6 +1,6 @@
 from django.shortcuts import render, redirect
 from .models import MenuItem, Order, OrderLine
-from .forms import MenuItemForm
+from .forms import MenuItemForm, OrderForm
 
 # Create your views here.
 def order_menu(request):
@@ -9,9 +9,17 @@ def order_menu(request):
 
 def checkout_order(request):
     if request.method == 'POST':
-        # Process order and payment
-        pass
-    return render(request, 'menu/checkout.html')
+        form = OrderForm(request.POST)
+        if form.is_valid():
+            order = form.save()
+            return redirect('order_detail', order_id=order.id)
+    else:
+        form = OrderForm()
+    return render(request, 'menu/checkout.html',  {'form': form})
+
+def order_detail(request, order_id):
+    order = Order.objects.get(id=order_id)
+    return render(request, 'menu/order_detail.html', {'order': order})
 
 def add_menu_item(request):
     if request.method == 'POST':

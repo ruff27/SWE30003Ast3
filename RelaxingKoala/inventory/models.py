@@ -1,9 +1,19 @@
 from django.db import models
-from menu.models import MenuItem
+from django.apps import apps
+
 # Create your models here.
 class Inventory(models.Model):
-    menu_item = models.OneToOneField(MenuItem, on_delete=models.CASCADE)
+    item_name = models.CharField(max_length=255, default="Unknown")
+    #menu_item = models.OneToOneField(MenuItem, on_delete=models.CASCADE)
     quantity = models.IntegerField()
+    
+    def __str__(self):
+        return self.item_name
+    
+    def menu_items(self):
+        MenuItem = apps.get_model('menu', 'MenuItem')
+        return MenuItem.objects.filter(inventory_item=self)
+
 
 class Supplier(models.Model):
     name = models.CharField(max_length=255)

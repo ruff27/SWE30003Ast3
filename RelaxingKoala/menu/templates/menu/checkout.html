@@ -1,14 +1,14 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Checkout</title>
+    <title>Checkout Order</title>
 </head>
 <body>
-    <h2>Checkout</h2>
+    <h2>Checkout Order</h2>
     <form method="POST">
         {% csrf_token %}
-        <!-- Add payment details here -->
-        <button type="submit">Complete Payment</button>
+        {{ form.as_p }}
+        <button type="submit">Confirm Order</button>
     </form>
 </body>
 </html>

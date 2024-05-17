@@ -1,21 +1,33 @@
 from django.db import models
+from django.apps import apps
 from accounts.models import Customer
-from inventory.models import Inventory
 # Create your models here.
 class MenuItem(models.Model):
     name = models.CharField(max_length=255)
     description = models.TextField()
     price = models.FloatField()
     available = models.BooleanField(default=True)
-    inventory_item = models.ForeignKey('Inventory', on_delete=models.CASCADE)
+    inventory_item = models.ForeignKey(
+        'inventory.Inventory', 
+        on_delete=models.CASCADE,
+        related_name='menu_items',
+        default=1
+    )
     def __str__(self):
         return self.name
+    
+    def inventory(self):
+        Inventory = apps.get_model('inventory', 'Inventory')
+        return Inventory.objects.get(id=self.inventory_item_id)
 
 class Order(models.Model):
+    ordered_menu_items = models.ManyToManyField(MenuItem)
     customer = models.ForeignKey(Customer, on_delete=models.CASCADE)
-    order_date = models.DateField()
-    total_amount = models.FloatField()
-    status = models.CharField(max_length=50)
+    order_date = models.DateTimeField(auto_now_add=True)
+
+    def total_amount(self):
+        total = sum(order_line.price for order_line in self.orderline_set.all())
+        return total
 
 class OrderLine(models.Model):
     order = models.ForeignKey(Order, on_delete=models.CASCADE)
