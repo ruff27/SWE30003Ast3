@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Checkout</title>
+</head>
+<body>
+    <h2>Checkout</h2>
+    <form method="POST">
+        {% csrf_token %}
+        <!-- Add payment details here -->
+        <button type="submit">Complete Payment</button>
+    </form>
+</body>
+</html>

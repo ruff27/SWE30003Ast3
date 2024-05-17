@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Reserve a Table</title>
+</head>
+<body>
+    <h2>Reserve a Table</h2>
+    <form method="POST">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit">Reserve</button>
+    </form>
+</body>
+</html>

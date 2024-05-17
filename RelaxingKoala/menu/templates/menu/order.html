@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Order Menu</title>
+</head>
+<body>
+    <h2>Order Menu</h2>
+    <ul>
+        {% for item in menu_items %}
+            <li>{{ item.name }} - {{ item.price }}</li>
+        {% endfor %}
+    </ul>
+    <form method="POST" action="{% url 'checkout_order' %}">
+        {% csrf_token %}
+        <button type="submit">Checkout</button>
+    </form>
+</body>
+</html>

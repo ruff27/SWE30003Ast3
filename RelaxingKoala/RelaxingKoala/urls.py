@@ -16,10 +16,14 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, include
+from accounts.views import login_view
+
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('restaurant/', include('restaurant.urls')),
     path('accounts/', include('accounts.urls')),
+    path('reservations/', include('reservations.urls')),
+    path('menu/', include('menu.urls')),
+    path('inventory/', include('inventory.urls')),
     # Add other app URLs here if needed
 ]
