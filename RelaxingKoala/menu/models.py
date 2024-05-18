@@ -34,3 +34,12 @@ class OrderLine(models.Model):
     menu_item = models.ForeignKey(MenuItem, on_delete=models.CASCADE)
     quantity = models.IntegerField()
     price = models.FloatField()
+
+class Payment(models.Model):
+    credit_card_number = models.CharField(max_length=16)
+    expiration_date = models.DateField()
+    amount = models.FloatField()
+    timestamp = models.DateTimeField(auto_now_add=True)
+
+    def __str__(self):
+        return f'Payment of {self.amount}'

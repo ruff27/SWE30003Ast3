@@ -6,7 +6,9 @@ from django.utils.translation import gettext_lazy as _
 class User(AbstractUser):
     name = models.CharField(max_length=255)
     contact = models.CharField(max_length=15)
-
+    is_customer = models.BooleanField(default=False)
+    is_staff_member = models.BooleanField(default=False)
+    
     groups = models.ManyToManyField(
     Group,
     verbose_name=_('groups'),

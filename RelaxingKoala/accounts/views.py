@@ -8,7 +8,7 @@ def register(request):
         form = UserRegistrationForm(request.POST)
         if form.is_valid():
             form.save()
-            return redirect('login')
+            return redirect('accounts:login')  
     else:
         form = UserRegistrationForm()
     return render(request, 'accounts/register.html', {'form': form})
@@ -25,4 +25,4 @@ def login_view(request):
                 return redirect('home')  # Redirect to the homepage after login
     else:
         form = LoginForm()
-    return render(request, 'accounts/login.html', {'form': form})
+    return render(request, 'accounts/loginpage.html', {'form': form})

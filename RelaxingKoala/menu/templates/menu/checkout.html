@@ -1,14 +1,17 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-    <title>Checkout Order</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Checkout</title>
 </head>
 <body>
-    <h2>Checkout Order</h2>
-    <form method="POST">
+    <h2>Checkout</h2>
+    <form method="post">
         {% csrf_token %}
-        {{ form.as_p }}
-        <button type="submit">Confirm Order</button>
+        {{ order_form.as_p }}
+        {{ payment_form.as_p }}
+        <button type="submit">Submit Payment</button>
     </form>
 </body>
 </html>
