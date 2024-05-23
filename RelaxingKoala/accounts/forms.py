@@ -6,7 +6,7 @@ class LoginForm(AuthenticationForm):
     # Define any additional form fields or customizations here if needed
     pass
 
-class UserRegistrationForm(UserCreationForm):
+class UserRegistrationForm(forms.ModelForm):
     class Meta:
         model = User
-        fields = ['username', 'password1', 'password2', 'name', 'contact', 'is_customer', 'is_staff_member']
+        fields = ['username', 'password', 'name', 'contact', 'is_customer', 'is_staff_member']

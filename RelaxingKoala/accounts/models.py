@@ -16,7 +16,6 @@ class User(AbstractUser):
     related_name='users_in_group',
     related_query_name='user'
     )
-
     user_permissions = models.ManyToManyField(
     Permission,
     verbose_name=_('user permissions'),
@@ -28,6 +27,7 @@ class User(AbstractUser):
 class Customer(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
     loyalty_points = models.IntegerField(default=0)
+    
 
 class Staff(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)

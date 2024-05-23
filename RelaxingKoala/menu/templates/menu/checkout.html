@@ -1,17 +1,35 @@
+<!-- checkout.html -->
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Checkout</title>
+    <!-- Meta tags, title, stylesheets, and any other necessary scripts -->
 </head>
 <body>
-    <h2>Checkout</h2>
-    <form method="post">
-        {% csrf_token %}
-        {{ order_form.as_p }}
-        {{ payment_form.as_p }}
-        <button type="submit">Submit Payment</button>
-    </form>
+    <div class="container mt-5">
+        <h2>Checkout</h2>
+        
+        <!-- Display error messages -->
+        {% if messages %}
+            <div class="alert alert-danger">
+                <ul>
+                    {% for message in messages %}
+                        <li>{{ message }}</li>
+                    {% endfor %}
+                </ul>
+            </div>
+        {% endif %}
+        
+        <!-- Display order form -->
+        <form method="post" class="mt-3">
+            {% csrf_token %}
+            {{ order_form.as_p }}
+            <div class="mb-3">
+                <label>Total Cost:</label>
+                <span>{{ total_cost }}</span>
+            </div>
+            <button type="submit" class="btn btn-success">Submit Payment</button>
+        </form>
+    </div>
 </body>
 </html>
