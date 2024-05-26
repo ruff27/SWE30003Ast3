@@ -2,22 +2,29 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Order Detail</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <title>Order Details</title>
 </head>
 <body>
-    <div class="container mt-5">
-        <h2>Order Detail</h2>
-        <p><strong>Order ID:</strong> {{ order.id }}</p>
-        <p><strong>Customer:</strong> {{ order.customer }}</p>
-        <p><strong>Ordered Menu Items:</strong></p>
-        <ul class="list-group">
-            {% for item in order.ordered_menu_items.all %}
-                <li class="list-group-item">{{ item.name }} - {{ item.price }}</li>
-            {% endfor %}
-        </ul>
-        <p><strong>Total Amount:</strong> {{ order.total_amount }}</p>
-    </div>
+    <h1>Order Details</h1>
+    <p>Order ID: {{ order.id }}</p>
+    <p>Ordered Items: {{ order.ordered_items }}</p>
+    <p>Total Amount: {{ order.total_amount }}</p>
+
+    {% if reservation %}
+        <h2>Reservation Details</h2>
+        <p>Reservation Start Time: {{ reservation.start_time }}</p>
+        <p>Reservation End Time: {{ reservation.end_time }}</p>
+        <p>Reservation Customer: {{ reservation.customer }}</p>
+        
+        {% if table %}
+            <h2>Table Details</h2>
+            <p>Table Number: {{ table.number }}</p>
+            <p>Table Capacity: {{ table.capacity }}</p>
+        {% else %}
+            <p>No table assigned for this reservation.</p>
+        {% endif %}
+    {% else %}
+        <p>No reservation associated with this order.</p>
+    {% endif %}
 </body>
 </html>

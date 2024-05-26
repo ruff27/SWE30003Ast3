@@ -2,16 +2,17 @@ from django.db import models
 from django.utils import timezone
 from accounts.models import Customer
 from menu.models import Order
-from datetime import date, timedelta
-import uuid
+from datetime import timedelta
 
 def default_end_time():
     return timezone.now() + timedelta(hours=1)
 
 class Table(models.Model):
-    id = models.AutoField(primary_key=True, default= 1)
-    number = models.IntegerField(unique=True, default= 1)
+    number = models.IntegerField(unique=True)
     capacity = models.IntegerField()
+
+    def __str__(self):
+        return f"Table {self.number} (Capacity: {self.capacity})"
 
 class Reservation(models.Model):
     start_time = models.DateTimeField(default=timezone.now)
@@ -28,6 +29,6 @@ class Reservation(models.Model):
     
     @classmethod
     def get_user_reservations_today(cls, user):
-        today = date.today()
-        return cls.objects.filter(user=user, date=today)
-
+        today_start = timezone.now().replace(hour=0, minute=0, second=0, microsecond=0)
+        today_end = today_start + timedelta(days=1)
+        return cls.objects.filter(customer=user.customer, start_time__gte=today_start, start_time__lt=today_end)

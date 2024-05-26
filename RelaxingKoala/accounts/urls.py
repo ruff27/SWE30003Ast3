@@ -3,6 +3,7 @@ from .views import login_view, register
 from . import views
 from django.contrib.auth.views import LoginView
 
+app_name = 'accounts'
 
 urlpatterns = [
     path('login/', login_view, name='login'),

@@ -54,6 +54,10 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
 ]
 
+AUTHENTICATION_BACKENDS = [
+    'django.contrib.auth.backends.ModelBackend',
+]
+
 ROOT_URLCONF = 'RelaxingKoala.urls'
 
 TEMPLATES = [
@@ -85,6 +89,8 @@ DATABASES = {
     }
 }
 
+
+AUTH_USER_MODEL = 'accounts.User'
 
 # Password validation
 # https://docs.djangoproject.com/en/4.2/ref/settings/#auth-password-validators
@@ -120,7 +126,15 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/4.2/howto/static-files/
 
-STATIC_URL = 'static/'
+STATIC_URL = '/static/'
+
+# Directory for collectstatic to gather all static files for deployment
+STATIC_ROOT = BASE_DIR / 'staticfiles'
+
+# Additional directories for static files
+STATICFILES_DIRS = [
+    BASE_DIR / 'common_static',
+]
 
 # Default login page
 LOGIN_URL = '/accounts/login/' 
