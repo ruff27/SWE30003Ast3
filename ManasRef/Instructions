@@ -1,0 +1,14 @@
+To delete a user
+
+Open Django Shell:
+Run the following command in your terminal to open the Django shell:
+
+python manage.py shell
+
+
+Delete User:
+Run the following commands in the Django shell to delete a user:
+
+from accounts.models import User
+user = User.objects.get(username='the_username')  # Replace 'the_username' with the actual username
+user.delete()

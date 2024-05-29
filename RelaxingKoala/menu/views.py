@@ -44,7 +44,7 @@ def checkout_order(request):
                     user_reservations_today = Reservation.get_user_reservations_today(request.user)
 
                     if user_reservations_today.exists():
-                        reservation = user_reservations_today.first()
+                        default_table = user_reservations_today.first()
                     else:
                         # Assign the first available table
                         default_table = Table.objects.first()

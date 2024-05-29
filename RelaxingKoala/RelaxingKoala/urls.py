@@ -17,6 +17,7 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path, include
 from accounts.views import login_view
+from .views import home
 
 
 urlpatterns = [
@@ -25,5 +26,6 @@ urlpatterns = [
     path('reservations/', include('reservations.urls')),
     path('menu/', include('menu.urls')),
     path('inventory/', include('inventory.urls')),
+    path('', home, name='home'),
     # Add other app URLs here if needed
 ]

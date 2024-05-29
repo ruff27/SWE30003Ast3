@@ -28,6 +28,9 @@ class Order(models.Model):
     def total_amount(self):
         total = sum(order_line.price for order_line in self.orderline_set.all())
         return total
+    
+    def __str__(self):
+        return f"Order {self.id} for {self.customer}"
 
 class OrderLine(models.Model):
     order = models.ForeignKey(Order, on_delete=models.CASCADE)

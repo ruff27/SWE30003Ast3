@@ -12,9 +12,9 @@ def reserve_table(request):
             reservation.customer = request.user.customer
             reservation.save()
             messages.success(request, 'Table reserved successfully!')
-            return redirect('order_detail', order_id=reservation.order.id)
+            return redirect('order_detail', order_id=reservation.order.id if reservation.order else 'order_list')
         else:
             messages.error(request, 'Failed to reserve table. Please check the form data.')
     else:
         form = ReservationForm()
-    return render(request, 'reservation/reserve_table.html', {'form': form})
+    return render(request, 'reservations/reserve.html', {'form': form})
