@@ -27,5 +27,6 @@ urlpatterns = [
     path('menu/', include('menu.urls')),
     path('inventory/', include('inventory.urls')),
     path('', home, name='home'),
+    path('accounts/', include('django.contrib.auth.urls')),  
     # Add other app URLs here if needed
 ]
