@@ -5,6 +5,7 @@ from .forms import OrderForm, PaymentForm, MenuItemForm
 from django.utils import timezone
 from django.db import transaction
 from django.contrib.auth.decorators import login_required
+from django.db.models import Sum
 
 
 def order_menu(request):
@@ -34,6 +35,8 @@ def checkout_order(request):
                 
                 payment = payment_form.save(commit=False)
                 payment.amount = total_cost
+                payment.order = order  
+
                 payment.save()
                 
                 return redirect('menu:order_detail', order_id=order.id)
@@ -53,8 +56,10 @@ def checkout_order(request):
 
 def order_detail(request, order_id):
     order = get_object_or_404(Order, id=order_id)
+    total_cost = order.ordered_menu_items.aggregate(total=Sum('price'))['total']  
     context = {
         'order': order,
+        'total_cost': total_cost,
     }
     return render(request, 'menu/order_detail.html', context)
 
