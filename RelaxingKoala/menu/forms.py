@@ -13,7 +13,6 @@ class OrderForm(forms.ModelForm):
         fields = ['ordered_menu_items']
 
     def __init__(self, *args, **kwargs):
-        user = kwargs.pop('user', None)
         super(OrderForm, self).__init__(*args, **kwargs)
         self.fields['ordered_menu_items'].widget = forms.CheckboxSelectMultiple()
         self.fields['ordered_menu_items'].queryset = MenuItem.objects.all()
@@ -31,3 +30,4 @@ class PaymentForm(forms.ModelForm):
         super(PaymentForm, self).__init__(*args, **kwargs)
         self.fields['credit_card_number'].widget = forms.TextInput(attrs={'placeholder': 'Credit Card Number'})
         self.fields['expiration_date'].widget = forms.TextInput(attrs={'placeholder': 'MM/YY'})
+

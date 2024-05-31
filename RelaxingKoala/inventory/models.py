@@ -6,7 +6,7 @@ class Inventory(models.Model):
     quantity = models.IntegerField()
 
     def __str__(self):
-        return self.item_name
+        return self.item_name 
 
     def reduce_quantity(self, quantity):
         if self.quantity < quantity:
