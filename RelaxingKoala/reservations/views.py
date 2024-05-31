@@ -2,6 +2,7 @@ from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth.decorators import login_required
 from django.contrib import messages
 from .forms import ReservationForm
+from .models import Reservation
 
 @login_required
 def reserve_table(request):
@@ -12,9 +13,15 @@ def reserve_table(request):
             reservation.customer = request.user.customer
             reservation.save()
             messages.success(request, 'Table reserved successfully!')
-            return redirect('order_detail', order_id=reservation.order.id if reservation.order else 'order_list')
+            return redirect('reservations:reservation_confirmation', reservation_id=reservation.id)
         else:
             messages.error(request, 'Failed to reserve table. Please check the form data.')
     else:
         form = ReservationForm()
     return render(request, 'reservations/reserve.html', {'form': form})
+
+
+@login_required
+def reservation_confirmation(request, reservation_id):
+    reservation = get_object_or_404(Reservation, reservation_id = reservation_id)
+    return render(request, 'reservations/confirmation.html', {'reservation': reservation})

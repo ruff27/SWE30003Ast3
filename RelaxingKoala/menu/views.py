@@ -1,15 +1,17 @@
-# views.py
-from django.shortcuts import render, redirect, get_object_or_404
+from django.shortcuts import render, redirect, get_object_or_404 
 from django.contrib import messages
 from .models import MenuItem, Order, Payment, Customer
 from .forms import OrderForm, PaymentForm, MenuItemForm
 from django.utils import timezone
 from django.db import transaction
+from django.contrib.auth.decorators import login_required
+
 
 def order_menu(request):
     menu_items = MenuItem.objects.filter(available=True)
     return render(request, 'menu/order.html', {'menu_items': menu_items})
 
+@login_required
 def checkout_order(request):
     if request.method == 'POST':
         order_form = OrderForm(request.POST)
@@ -25,7 +27,6 @@ def checkout_order(request):
                     customer, created = Customer.objects.get_or_create(user=request.user)
                     order.customer = customer
                 else:
-                    messages.error(request, 'You must be logged in to place an order.')
                     return redirect('login')  # Redirect to login if user is not authenticated
 
                 order.save()

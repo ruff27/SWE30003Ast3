@@ -3,6 +3,8 @@ from django.contrib.auth import authenticate, login
 from .forms import LoginForm, UserRegistrationForm
 from django.contrib.auth.decorators import login_required
 from .models import Customer, Staff
+from django.http import HttpResponse
+import time
 
 
 # Create your views here.
@@ -26,9 +28,9 @@ def login_view(request):
             user = authenticate(request, username=username, password=password)
             if user is not None:
                 login(request, user)
-                return redirect('menu:order_menu')  # Redirect to the menu after login
+                return redirect('home')  # Redirect to the home after login
             else:
-                print("Authentication failed")  # Debugging statement
+                error_message = 'Invalid login credentials'
         else:
             print("Form is not valid")  # Debugging statement
     else:
