@@ -4,7 +4,6 @@ def attach_customer_to_order(user):
     try:
         customer = user.customer
     except Customer.DoesNotExist:
-        # If the user doesn't have a related Customer object, create one
         customer = Customer.objects.create(user=user)
     return customer
 

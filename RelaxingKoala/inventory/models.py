@@ -1,10 +1,9 @@
 from django.db import models
 from django.apps import apps
 
-# Create your models here.
 class Inventory(models.Model):
     item_name = models.CharField(max_length=255, default="Unknown")
-    #menu_item = models.OneToOneField(MenuItem, on_delete=models.CASCADE)
+    #menu_item = models.OneToOneField('MenuItem', on_delete=models.CASCADE)
     quantity = models.IntegerField()
     
     def __str__(self):

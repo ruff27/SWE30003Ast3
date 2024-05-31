@@ -1,4 +1,3 @@
-# forms.py
 from django import forms
 from .models import MenuItem, Order, Payment
 from reservations.models import Reservation
