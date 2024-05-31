@@ -15,7 +15,7 @@ class Table(models.Model):
         return f"Table {self.number} (Capacity: {self.capacity})"
 
 class Reservation(models.Model):
-    reservation_id = models.AutoField(primary_key=True, default= 1)
+    reservation_id = models.AutoField(primary_key=True)
     start_time = models.DateTimeField(default=timezone.now)
     end_time = models.DateTimeField(default=default_end_time)
     table = models.ForeignKey(Table, on_delete=models.CASCADE)

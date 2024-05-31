@@ -18,6 +18,7 @@ class OrderForm(forms.ModelForm):
         self.fields['ordered_menu_items'].widget = forms.CheckboxSelectMultiple()
         self.fields['ordered_menu_items'].queryset = MenuItem.objects.all()
 
+
 class PaymentForm(forms.ModelForm):
     class Meta:
         model = Payment

@@ -13,7 +13,7 @@ def reserve_table(request):
             reservation.customer = request.user.customer
             reservation.save()
             messages.success(request, 'Table reserved successfully!')
-            return redirect('reservations:reservation_confirmation', reservation_id=reservation.id)
+            return redirect('reservations:reservation_confirmation', reservation_id=reservation.reservation_id)
         else:
             messages.error(request, 'Failed to reserve table. Please check the form data.')
     else:

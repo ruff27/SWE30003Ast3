@@ -5,6 +5,6 @@ app_name = 'reservations'
 
 urlpatterns = [
     path('reserve/', reserve_table, name='reserve_table'),
-    path('confirmation/<int:reservation_id>/', reservation_confirmation, name='confirmation'),  
+    path('confirmation/<int:reservation_id>/', reservation_confirmation, name='reservation_confirmation'),  
 
 ]

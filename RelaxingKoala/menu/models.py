@@ -1,6 +1,7 @@
 from django.db import models
 from django.apps import apps
 from accounts.models import Customer
+from inventory.models import Inventory
 
 class MenuItem(models.Model):
     name = models.CharField(max_length=255)
@@ -8,7 +9,7 @@ class MenuItem(models.Model):
     price = models.FloatField()
     available = models.BooleanField(default=True)
     inventory_item = models.ForeignKey(
-        'inventory.Inventory', 
+        Inventory, 
         on_delete=models.CASCADE,
         related_name='menu_items',
         default=1
