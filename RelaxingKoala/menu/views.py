@@ -7,7 +7,7 @@ from django.db import transaction
 from django.contrib.auth.decorators import login_required
 from django.db.models import Sum
 
-
+@login_required
 def order_menu(request):
     menu_items = MenuItem.objects.filter(available=True)
     return render(request, 'menu/order.html', {'menu_items': menu_items})
